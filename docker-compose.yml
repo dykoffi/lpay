@@ -1,0 +1,18 @@
+version: "3.9" # optional since v1.27.0
+services:
+  lpay_db_dev:
+    image: postgres:14-alpine
+    container_name: lpay_db_dev
+    environment:
+      - POSTGRES_USER=lpay_user
+      - POSTGRES_DB=lpay_db_dev
+      - POSTGRES_PASSWORD=6855
+    ports:
+      - 18570:5432
+    volumes:
+      - lpay_vol_dev:/var/lib/postgresql/data
+
+
+volumes:
+  lpay_vol_dev:
+    driver: local
