@@ -2,3 +2,11 @@
 **/.svn
 **/.hg
 **/node_modules
+logs
+build
+public
+coverage
+.prettierrc
+**/*.json
+**/*.yml
+**/*.md

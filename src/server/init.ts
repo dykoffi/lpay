@@ -1,2 +1,2 @@
 //This file contains code to be start before server running
-import "../configs/env"
+import "../configs/env";

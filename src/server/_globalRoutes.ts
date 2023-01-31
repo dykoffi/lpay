@@ -6,26 +6,20 @@ import prometheus from "../utils/prometheus";
 
 app.use("/", require("../modules/home/home.controller.ts"));
 
-
-app.use("/metrics", async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction) => {
-    res.setHeader("Content-Type", prometheus.contentType)
-    res.send(await prometheus.metrics())
-}
+app.use(
+	"/metrics",
+	async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+		res.setHeader("Content-Type", prometheus.contentType);
+		res.send(await prometheus.metrics());
+	}
 );
 
-app.use("/swagger.json", (
-    req: express.Request,
-    res: express.Response) => {
-    res.status(200).json(swaggerDocument);
+app.use("/swagger.json", (req: express.Request, res: express.Response) => {
+	res.status(200).json(swaggerDocument);
 });
 
-app.use("/docs", (
-    req: express.Request,
-    res: express.Response) => {
-    res.send(`<!doctype html>
+app.use("/docs", (req: express.Request, res: express.Response) => {
+	res.send(`<!doctype html>
     <html>
       <head>
         <meta charset="utf-8">
@@ -52,12 +46,10 @@ app.use("/docs", (
             theme="light">
         </rapi-doc>
       </body>
-    </html>`)
+    </html>`);
 });
 
-app.use((
-    req: express.Request,
-    res: express.Response) => {
-    res.status(404).json({ error: "NotFound", message: "This route doesn't exist" });
+app.use((req: express.Request, res: express.Response) => {
+	res.status(404).json({ error: "NotFound", message: "This route doesn't exist" });
 });
 export default app;
